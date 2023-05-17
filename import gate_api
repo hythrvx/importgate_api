@@ -1,0 +1,23 @@
+import gate_api
+
+# 初始化API
+client = gate_api.GateIO(api_key, api_secret)
+
+# 获取市场深度
+depth = client.get_order_book('btc_usdt', 10)
+
+# 获取账户余额
+balance = client.get_balances()
+
+# 下单
+order = client.buy_limit_order(
+    'btc_usdt',
+    price=50000,
+    amount=1
+)
+
+# 撤单
+client.cancel_order('btc_usdt', order['id'])
+
+# 获取交易历史
+trades = client.list_my_trades('btc_usdt')
